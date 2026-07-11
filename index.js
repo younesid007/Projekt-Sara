@@ -42,6 +42,11 @@ const translations = {
         service_4_tag: "04 / Preservation",
         service_4_title: "Lens & Glaucoma Therapy",
         service_4_desc: "Advanced surgical procedures for cataracts and precise protection of the optic nerve for glaucoma.",
+        simulator_tagline: "Before / After",
+        simulator_title: "Experience the Difference",
+        simulator_description: "Drag the slider to see the world after a successful correction.",
+        simulator_before: "Before",
+        simulator_after: "After",
         about_tagline: "The Specialist",
         about_title: "In the Hands of Ultimate Expertise",
         about_badge_sub: "Specialist in Ophthalmology",
@@ -137,7 +142,12 @@ const translations = {
         service_3_desc: "Prise en charge douce et ludique de nos plus jeunes patients pour un développement visuel optimal.",
         service_4_tag: "04 / Préservation",
         service_4_title: "Cristallin & Glaucome",
-        service_4_desc: "Procédures chirurgicales de pointe pour la cataracte et protection précise du nerf optique contre le glaucome.",
+        service_4_desc: "Procédures chirurgicales avancées pour la cataracte et protection précise du nerf optique pour le glaucome.",
+        simulator_tagline: "Avant / Après",
+        simulator_title: "Découvrez la Différence",
+        simulator_description: "Faites glisser le curseur pour voir le monde après une correction réussie.",
+        simulator_before: "Avant",
+        simulator_after: "Après",
         about_tagline: "La Spécialiste",
         about_title: "Entre les Mains d'une Expertise Totale",
         about_badge_sub: "Spécialiste en Ophtalmologie",
@@ -233,7 +243,12 @@ const translations = {
         service_3_desc: "رعاية لطيفة ومرحة لأطفالنا الصغار لضمان التطور البصري السليم وعلاج عيوب التركيز والكسل البصري مبكراً.",
         service_4_tag: "04 / وقاية",
         service_4_title: "علاج المياه البيضاء والزرقاء",
-        service_4_desc: "عمليات جراحية متقدمة لعلاج المياه البيضاء (الساد) وحماية دقيقة وصارمة للعصب البصري من المياه الزرقاء (الجلوكوما).",
+        service_4_desc: "إجراءات جراحية متقدمة لإعتام عدسة العين وحماية دقيقة للعصب البصري للجلوكوما.",
+        simulator_tagline: "قبل / بعد",
+        simulator_title: "اكتشف الفرق",
+        simulator_description: "اسحب شريط التمرير لترى العالم بعد تصحيح ناجح.",
+        simulator_before: "قبل",
+        simulator_after: "بعد",
         about_tagline: "الطبيبة المختصة",
         about_title: "بين أيدي الكفاءة الطبية المتكاملة",
         about_badge_sub: "أخصائية في طب وجراحة العيون",
@@ -301,6 +316,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initScrollAnimations();
     initBookingForm();
     initLanguageSwitcher();
+    initVisionSimulator();
 });
 
 /**
@@ -543,3 +559,20 @@ function langButtonsActiveSync(lang) {
         }
     });
 }
+
+/**
+ * 6. Vision Simulator Logic
+ * Connects the range input to the CSS variable controlling the clip-path.
+ */
+function initVisionSimulator() {
+    const slider = document.getElementById('sim-slider');
+    const wrapper = document.getElementById('vision-simulator');
+    
+    if (slider && wrapper) {
+        slider.addEventListener('input', (e) => {
+            const value = e.target.value;
+            wrapper.style.setProperty('--exposure', `${value}%`);
+        });
+    }
+}
+
